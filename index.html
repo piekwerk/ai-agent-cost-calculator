@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Agent Mistake Cost Calculator — Piekwerk</title>
 <meta name="description" content="Estimate what AI coding agent mistakes cost you per year, and how fast a config fix pays for itself.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="logo-512.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://piekwerk.github.io/ai-agent-cost-calculator/">
+<meta property="og:title" content="AI Agent Mistake Cost Calculator">
+<meta property="og:description" content="Estimate what AI coding agent mistakes cost you per year, and how fast a config fix pays for itself. Free, no signup.">
+<meta property="og:image" content="https://piekwerk.github.io/ai-agent-cost-calculator/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent Mistake Cost Calculator">
+<meta name="twitter:description" content="What do AI coding agent mistakes cost you per year? Free calculator, no signup.">
+<meta name="twitter:image" content="https://piekwerk.github.io/ai-agent-cost-calculator/og-image.png">
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; margin: 0; }
@@ -54,13 +67,13 @@
   <div class="card results">
     <div class="row"><span class="k">Time lost per year</span><span class="v" id="timeYear">156 h</span></div>
     <div class="row big"><span class="k">Cost per year</span><span class="v" id="costYear">&euro;7,800</span></div>
-    <div class="row"><span class="k">The &euro;9 kit pays for itself if it saves you</span><span class="v" id="breakeven">9 min/month</span></div>
+    <div class="row"><span class="k">The &euro;9 kit pays for itself after it saves you</span><span class="v" id="breakeven">11 min</span></div>
   </div>
 
   <a class="cta" href="https://piekwerk.gumroad.com/l/anti-patterns-kit">Get the 20 rules that stop the mistakes &rarr; &euro;9</a>
   <a class="second" href="https://piekwerk.gumroad.com/l/agentconfig-studio">Or the full 12-stack config kit &rarr; $29</a>
 
-  <p class="note">Rough estimate: hours &times; 52 weeks &times; rate. Break-even shows the monthly debugging time the kit must save to cover its price. Your numbers stay in your browser; nothing is sent anywhere.</p>
+  <p class="note">Rough estimate: hours &times; 52 weeks &times; rate. Break-even is the one-time amount of debugging time the kit must save you to cover its 9 euro price. Your numbers stay in your browser; nothing is sent anywhere.</p>
 
   <footer>Piekwerk &middot; version-pinned, validator-tested config kits for 12 stacks &middot; <a href="https://github.com/piekwerk/agents-md-examples">free examples on GitHub</a></footer>
 
@@ -76,9 +89,9 @@
     const costYear = hoursYear * r;
     document.getElementById('timeYear').textContent = fmt(Math.round(hoursYear)) + ' h';
     document.getElementById('costYear').textContent = '\u20AC' + fmt(Math.round(costYear));
-    // minutes per month the kit must save to cover 9 EUR
-    const minutesMonth = costYear > 0 ? (9 / (costYear / 12 / r)) * 60 : 0;
-    document.getElementById('breakeven').textContent = (minutesMonth < 1 ? '<1' : fmt(Math.round(minutesMonth))) + ' min/month';
+    // one-time minutes of your time that must be saved to cover the 9 EUR price
+    const minutesOnce = (9 / r) * 60;
+    document.getElementById('breakeven').textContent = (minutesOnce < 1 ? '<1' : fmt(Math.round(minutesOnce))) + ' min';
   }
   hours.addEventListener('input', update);
   rate.addEventListener('input', update);
